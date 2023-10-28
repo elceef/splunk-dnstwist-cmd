@@ -1,0 +1,53 @@
+{
+  "schemaVersion": "1.0.0",
+  "info": {
+    "title": "dnstwist add-on (command)",
+    "id": {
+      "group": null,
+      "name": "SA_dnstwist",
+      "version": "2023.10.0"
+    },
+    "author": [
+      {
+        "name": "Marcin Ulikowski",
+        "email": "marcin@ulikowski.pl",
+        "company": null
+      }
+    ],
+    "releaseDate": null,
+    "description": "Custom search command to generate lookalike domain name permutations",
+    "classification": {
+      "intendedAudience": null,
+      "categories": [],
+      "developmentStatus": null
+    },
+    "commonInformationModels": null,
+    "license": {
+      "name": null,
+      "text": null,
+      "uri": null
+    },
+    "privacyPolicy": {
+      "name": null,
+      "text": null,
+      "uri": null
+    },
+    "releaseNotes": {
+      "name": null,
+      "text": null,
+      "uri": null
+    }
+  },
+  "dependencies": {
+  },
+  "tasks": [],
+  "inputGroups": {
+  },
+  "incompatibleApps": {
+  },
+  "platformRequirements": {
+    "splunk": {
+      "Enterprise": "*"
+    }
+  }
+}
