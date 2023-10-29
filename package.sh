@@ -22,7 +22,7 @@ if [ ! -d "$LIB" ]; then
 
 fi
 
-if [ -n "$(ls -A $LIB)" ]; then
+if [ -n "$(ls $LIB)" ]; then
 
   echo "Error: '$LIB' should be empty!"
   exit 1
