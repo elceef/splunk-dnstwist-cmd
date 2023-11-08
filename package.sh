@@ -53,7 +53,11 @@ wget -nv -O - -- "$DNSTWIST_URL" | \
 tar --wildcards --no-wildcards-match-slash --strip-components=1 -xzf - -C "$LIB" "*/dnstwist.py"
 
 echo "Building package ..."
-COPYFILE_DISABLE=1 tar --format ustar --exclude="$0" --exclude="$PACKAGE_NAME" -cvzf "$PACKAGE_NAME" "$ADDON_DIR"
+COPYFILE_DISABLE=1 tar --format ustar \
+--exclude="$0" \
+--exclude="$PACKAGE_NAME" \
+--exclude=".gitignore" \
+-cvzf "$PACKAGE_NAME" "$ADDON_DIR"
 
 echo "Done!"
 
