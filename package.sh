@@ -52,6 +52,9 @@ echo "Downloading dnstwist from the web ..."
 wget -nv -O - -- "$DNSTWIST_URL" | \
 tar --wildcards --no-wildcards-match-slash --strip-components=1 -xzf - -C "$LIB" "*/dnstwist.py"
 
+echo "Setting 0644 permissions ..."
+find "$LIB" -type f -name "*.py" -exec chmod 644 {} \;
+
 echo "Building package ..."
 COPYFILE_DISABLE=1 tar --format ustar \
 --exclude="$0" \
