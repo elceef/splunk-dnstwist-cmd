@@ -1,10 +1,8 @@
-#!/usr/bin/env sh
+#!/bin/sh -e
 
 # Created by Marcin Ulikowski <marcin@ulikowski.pl>
 
 # This script downloads and extracts required libraries, and then builds complete add-on package file
-
-set -e
 
 PACKAGE_NAME="SA_dnstwist.tgz"
 
