@@ -60,7 +60,7 @@ class dnstwistCommand(GeneratingCommand):
 
     csvcol = Option(doc='''
         **Syntax:** **csvcol=***<column>*
-        **Description:** Column name CSV lookup file (default: domain)
+        **Description:** Column name in CSV lookup file (default: domain)
         ''', name='csvcol', require=False, default='domain')
 
     dictionary = Option(doc='''
