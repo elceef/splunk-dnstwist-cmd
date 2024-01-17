@@ -8,7 +8,7 @@ PACKAGE_NAME="SA_dnstwist.tgz"
 
 SPLUNK_SDK_URL="https://files.pythonhosted.org/packages/ee/4a/e92bc2d09cbaafcf54f1226bb1e87988ab2c657cd65c9a9a081e94760b81/splunk-sdk-1.7.4.tar.gz"
 IDNA_URL="https://files.pythonhosted.org/packages/8b/e1/43beb3d38dba6cb420cefa297822eac205a277ab43e5ba5d5c46faf96438/idna-3.4.tar.gz"
-DNSTWIST_URL="https://files.pythonhosted.org/packages/ef/84/a1474ae1ec3ef3af0bbe6ee3bf6253570265835be8b3969301e07606481c/dnstwist-20230918.tar.gz"
+DNSTWIST_URL="https://files.pythonhosted.org/packages/31/a7/39d27816c945ba7ba78797fc7b6a726ce437dc12463c3ffadc192c5f563f/dnstwist-20240116.tar.gz"
 
 ADDON_DIR="SA_dnstwist"
 LIB="./$ADDON_DIR/lib"
