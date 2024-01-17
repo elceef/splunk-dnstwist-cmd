@@ -6,10 +6,10 @@ export = system
 access = read : [ * ], write : [ admin, sc_admin ]
 export = none
 
-[commands/pulsedive]
+[commands/dnstwist]
 export = system
 access = read : [ admin, sc_admin, power ], write : [ admin, sc_admin ]
 
-[pulsedive]
+[dnstwist]
 export = system
 access = read : [ admin, sc_admin, power ], write : [ admin, sc_admin ]
