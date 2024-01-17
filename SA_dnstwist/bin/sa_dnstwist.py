@@ -45,7 +45,7 @@ def worker(task):
         return (domain, fuzz.permutations())
 
 
-@Configuration(distributed=True)
+@Configuration(type='streaming')
 class dnstwistCommand(GeneratingCommand):
 
     csvfile = Option(doc='''
