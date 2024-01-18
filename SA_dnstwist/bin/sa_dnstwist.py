@@ -28,7 +28,7 @@ from multiprocessing import Pool
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', 'lib'))
 from splunklib.searchcommands import dispatch, GeneratingCommand, Configuration, Option
-from dnstwist import Fuzzer, UrlParser
+from dnstwist import Fuzzer, Permutation, UrlParser
 
 
 WORKERS = min((os.cpu_count()//2)+1, 32) # use half of the logical CPU, up to 32
@@ -42,6 +42,7 @@ def worker(task):
     except Exception as err:
         return (domain, err)
     else:
+        fuzz.domains.discard(Permutation(fuzzer='*original', domain=domain))
         return (domain, fuzz.permutations())
 
 
@@ -124,7 +125,7 @@ class dnstwistCommand(GeneratingCommand):
                     self.write_warning('Exception occured while processing "{}": {}'.format(domain, str(output)))
                     continue
                 tstamp = time.time()
-                for permutation in output[1:]: # skip fuzzer "*original" at 1st position
+                for permutation in output:
                     yield {
                         '_time': tstamp,
                         '_raw': permutation,
