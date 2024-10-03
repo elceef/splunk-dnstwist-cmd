@@ -35,9 +35,11 @@ WORKERS = min((os.cpu_count()//2)+1, 32) # use half of the logical CPU, up to 32
 
 
 def worker(task):
-    domain, fuzzers, dictionary = task
+    domain, fuzzers, dictionary, tld_dictionary = task
     try:
-        fuzz = Fuzzer(UrlParser(domain).domain, dictionary=dictionary)
+        fuzz = Fuzzer(UrlParser(domain).domain,
+                      dictionary=dictionary,
+                      tld_dictionary=tld_dictionary)
         fuzz.generate(fuzzers=fuzzers)
     except Exception as err:
         return (domain, err)
@@ -68,6 +70,11 @@ class dnstwistCommand(GeneratingCommand):
         **Syntax:** **dictionary=***<word ...>*
         **Description:** Generate more permutations using dictionary words
         ''', name='dictionary', require=False)
+
+    tld = Option(doc='''
+        **Syntax:** **tld=***<TLD ...>*
+        **Description:** Swap TLD for the original domain
+        ''', name='tld', require=False)
 
     fuzzers = Option(doc='''
         **Syntax:** **fuzzers=***<fuzzer ...>*
@@ -117,10 +124,18 @@ class dnstwistCommand(GeneratingCommand):
             self.write_info('Enabled dictionary fuzzer')
             fuzzers.append('dictionary')
 
+        tld = []
+        if self.tld:
+            tld = explode(self.tld)
+
+        if tld and fuzzers and 'tld-swap' not in fuzzers:
+            self.write_info('Enabled tld-swap fuzzer')
+            fuzzers.append('tld-swap')
+
         workers = min(len(domains), WORKERS)
 
         with Pool(workers) as pool:
-            for domain, output in pool.imap_unordered(worker, zip(domains, repeat(fuzzers), repeat(dictionary))):
+            for domain, output in pool.imap_unordered(worker, zip(domains, repeat(fuzzers), repeat(dictionary), repeat(tld))):
                 if isinstance(output, Exception):
                     self.write_warning('Exception occured while processing "{}": {}'.format(domain, str(output)))
                     continue
